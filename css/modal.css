@@ -79,3 +79,17 @@
     padding: 5px 10px;
     border-top: 1px solid #eee;
 }
+
+.col {
+    max-width: 400px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: column;
+}
+
+.container {
+    justify-content: space-around;
+    align-items: center;
+    
+}
