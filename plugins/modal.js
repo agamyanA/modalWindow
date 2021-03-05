@@ -21,41 +21,6 @@ function _createModalFooter(buttons = []) {
     return wrap
 }
 
-function _creatCard(options) {
-    const DEFAULT_HEIGHT = '450px'
-    const productGrid = document.createElement('section')
-    productGrid.classList.add('productGrid')
-    document.body.appendChild(productGrid)
-
-    for (let i = 0; i < options.length; i++) {
-
-        const card = document.createElement('div')
-        card.classList.add('row')
-        document.body.appendChild(card)
-
-        for (let j = 0; j < options[i].length; j++) {
-            card.insertAdjacentHTML('afterbegin', `
-            <div class="col">
-                <div class="container">
-                    <div class="card" style="height: ${DEFAULT_HEIGHT}">
-                        <img src="${options[i][j].img}" class="card-img-top" style="height: 270px">
-                        <div class="card-body">
-                        <h5 class="card-title">${options[i][j].title}</h5>
-                        <p class="card-text">${options[i][j].price}</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>        
-            </div>
-    `)     
-        }  
-    
-        productGrid.appendChild(card)
-    }
-    
-    return productGrid
-}
-
 function _createModal(options) {
     const DEFAULT_WIDTH = '600px'
     const modal = document.createElement('div')
@@ -79,10 +44,6 @@ function _createModal(options) {
     return modal
 }
 
-$.card = function (options) {
-    _creatCard(options) 
-}
-
 $.modal = function (options) {
     const ANIMATION_SPEED = 200
     const modal = _createModal(options)
@@ -103,8 +64,11 @@ $.modal = function (options) {
             modal.classList.add('hide')
             setTimeout(() => {
                 modal.classList.remove('hide')
+                closing = false
+                if (typeof options.onClose === 'function') {
+                    options.onClose()
+                }
             }, ANIMATION_SPEED)
-            closing = false
         }
     }
 

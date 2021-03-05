@@ -80,16 +80,14 @@
     border-top: 1px solid #eee;
 }
 
-.col {
-    max-width: 400px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-flow: column;
+.productGrid {
+    margin: 0 auto;
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
 }
 
-.container {
-    justify-content: space-around;
-    align-items: center;
-    
+h1 {
+    text-align: center;
 }
